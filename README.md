@@ -19,7 +19,7 @@ mybatisplus-plus使用@UpdateFill注解触发更新时，执行注解中自定�
     <dependency>
         <groupId>com.github.jeffreyning</groupId>
         <artifactId>mybatisplus-plus</artifactId>
-        <version>0.0.1-RELEASE</version>
+        <version>1.0.0-RELEASE</version>
     </dependency>
 ````
 
