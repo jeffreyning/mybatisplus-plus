@@ -6,6 +6,7 @@ mybatisplus-plus对mybatisplus的一些功能补充
 需要在实体类字段上用原生注解@TableField设置fill=FieldFill.INSERT fill=FieldFill.UPDATE或fill=FieldFill.INSERT_UPDATE否则不会触发自定义填充<br>
 mybatisplus-plus使用@InsertFill注解触发插入时，执行注解中自定义的sql填充实体类字段<br>
 mybatisplus-plus使用@UpdateFill注解触发更新时，执行注解中自定义的sql填充实体类字段<br>
+还可以自动填充主键字段,解决原生mybatisplus不支持多个主键的问题<br>
 <br>
 在xml中编写resultmap是件头痛的事，特别是表连接时返回的对象是多样的，如果不按照map返回，分别建resultmap工作量会翻倍。<br>
 使用@AutoMap注解entity实体类，就可以在应用启动时解析使用@TableField注解的字段，自动生成scan.mybatis-plus_xxxx为id的resultMap<br>
@@ -28,6 +29,13 @@ mybatisplus-plus使用@UpdateFill注解触发更新时，执行注解中自定�
     @TableField(value="seqno",fill=FieldFill.INSERT )
     @InsertFill("select lpad(max(seqno)+3,10,'0') from test")
     private String seqno;
+````
+
+**在实体类主键字段上设置@InsertFill，在插入时对id字段自动填充复杂计算值**
+````
+    @TableId(value = "id", type=IdType.INPUT)
+    @InsertFill("select CONVERT(max(seqno)+3,SIGNED) from test")
+    private Integer id;
 ````
 
 **在实体类字段上设置@InsertFill @UpdateFill，插入和更新时使用当前时间填充**
