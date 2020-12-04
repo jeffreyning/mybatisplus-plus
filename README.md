@@ -46,7 +46,7 @@ mybatisplus-plus使用@UpdateFill注解触发更新时，执行注解中自定�
     private Date updateTime;
 ````
 
-**在启动类中使用@EnableMPP启动扩展自定义填充功能**
+**在启动类中使用@EnableMPP启动扩展自定义填充功能和自动创建resultmap功能**
 ````
 @SpringBootApplication
 @EnableMPP
