@@ -50,14 +50,15 @@ public class ScanUtil {
                 classPath = classPath.replace(".class", "");
                 try {
                     Class<?> aClass = Class.forName(packagePath + "." + classPath);
-                    Annotation[] anns=aClass.getAnnotations();
+                    res.add(aClass);
+/*                    Annotation[] anns=aClass.getAnnotations();
                     if(anns!=null) {
                         for (Annotation an : anns) {
                             if (an.toString().contains(AutoMap.class.getName())) {
                                 res.add(aClass);
                             }
                         }
-                    }
+                    }*/
                 } catch (ClassNotFoundException e) {
                     logger.error("scan error",e);
                 }
@@ -81,14 +82,15 @@ public class ScanUtil {
                     String className = name.substring(0, name.lastIndexOf(".")).replace("/", ".");
                     try {
                         Class clazz = Class.forName(className);
-                        Annotation[] anns=clazz.getAnnotations();
+                        res.add(clazz);
+/*                        Annotation[] anns=clazz.getAnnotations();
                         if(anns!=null) {
                             for (Annotation an : anns) {
                                 if (an.toString().contains(AutoMap.class.getName())) {
                                     res.add(clazz);
                                 }
                             }
-                        }
+                        }*/
                     } catch (ClassNotFoundException e) {
                         logger.error("scan error",e);
                     }

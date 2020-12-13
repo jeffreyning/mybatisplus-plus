@@ -1,9 +1,12 @@
 package com.github.jeffreyning.mybatisplus.conf;
 
 import com.github.jeffreyning.mybatisplus.handler.DataAutoFill;
+import com.github.jeffreyning.mybatisplus.ognl.NhOgnlClassResolver;
 import com.github.jeffreyning.mybatisplus.scan.ResultMapUtil;
 import com.github.jeffreyning.mybatisplus.scan.ScanUtil;
+import com.github.jeffreyning.mybatisplus.util.LambdaUtil;
 import com.github.jeffreyning.mybatisplus.util.PlusACUtils;
+import org.apache.ibatis.scripting.xmltags.OgnlCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +32,20 @@ public class PlusConfig {
     private Environment env;
 
     @PostConstruct
-    public void initRM(){
+    public void initRM() throws Exception {
+        NhOgnlClassResolver resolver=new NhOgnlClassResolver();
+        resolver.baseList.add("com.github.jeffreyning.mybatisplus.check");
+        LambdaUtil.setValue(OgnlCache.class,"CLASS_RESOLVER",resolver);
+        String utilBasePaths=env.getProperty("mpp.utilBasePath");
+        if(utilBasePaths==null || "".equals(utilBasePaths) ){
+            logger.info("mpp.utilBasePath is null no util alias for xml");
+        }else{
+            String[] utilPaths= utilBasePaths.split(",");
+            for(String up:utilPaths){
+                resolver.baseList.add(up);
+            }
+        }
+
         String basePaths=env.getProperty("mpp.entityBasePath");
         if(basePaths==null || "".equals(basePaths) ){
             logger.error("mpp.entityBasePath is null skip scan result map");
@@ -41,6 +57,7 @@ public class PlusConfig {
             Set<Class> set= ScanUtil.getClasses(base);
             for(Class cls:set){
                 ResultMapUtil.createResultMap(cls);
+                LambdaUtil.createColDict(cls);
             }
         }
     }
