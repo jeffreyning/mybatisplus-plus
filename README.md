@@ -7,6 +7,7 @@ mybatisplus-plus对mybatisplus的一些功能补充
 mybatisplus-plus使用@InsertFill注解触发插入时，执行注解中自定义的sql填充实体类字段<br>
 mybatisplus-plus使用@UpdateFill注解触发更新时，执行注解中自定义的sql填充实体类字段<br>
 还可以自动填充主键字段,解决原生mybatisplus不支持多个主键的问题<br>
+使用ColNameUtil.pn静态方法，获取实体类中读取方法对应的列名称<br>
 <br>
 在xml中编写resultmap是件头痛的事，特别是表连接时返回的对象是多样的，如果不按照map返回，分别建resultmap工作量会翻倍。<br>
 使用@AutoMap注解entity实体类，就可以在应用启动时解析使用@TableField注解的字段，自动生成scan.mybatis-plus_xxxx为id的resultMap<br>
@@ -142,10 +143,17 @@ public interface TestMapper extends BaseMapper<TestEntity> {
 }
 ````
 
+**使用ColNameUtil.pn静态方法，获取实体类中读取方法对应的列名称**
+````
+       System.out.println(ColNameUtil.pn(TestEntity::getCreateTime));
+       System.out.println(ColNameUtil.pn(TestEntity::getId));
+       System.out.println(ColNameUtil.pn(JoinEntity::getSome2));
+       System.out.println(ColNameUtil.pn(JoinEntity::getUpdateTime));
+````
 
 **demo下载**
-mybatisplus-plus 1.1.0 示例工程下载地址
-链接：https://pan.baidu.com/s/1uGyywC-9-R0L_i7fWAIDwA
+mybatisplus-plus 1.1.1 示例工程下载地址
+链接：https://pan.baidu.com/s/1X7pftcq5LJvsze7mDK1ALQ
 
 扫描订阅公众号，回复"plus"获取下载密码
 ![Image text](http://www.jrnsoft.com/qrcode_for_gh.jpg)
