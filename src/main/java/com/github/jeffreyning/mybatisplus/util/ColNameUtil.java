@@ -12,10 +12,15 @@ import java.util.Locale;
  * @author ninghao
  */
 public class ColNameUtil {
-    public static <T> String pn(ParseFun<T, Object> parseFun) throws Exception {
-        Method writeReplace = parseFun.getClass().getDeclaredMethod("writeReplace");
-        writeReplace.setAccessible(true);
-        Object sl = writeReplace.invoke(parseFun);
+    public static <T> String pn(ParseFun<T, Object> parseFun)  {
+        Object sl =null;
+        try {
+            Method writeReplace = parseFun.getClass().getDeclaredMethod("writeReplace");
+            writeReplace.setAccessible(true);
+            sl = writeReplace.invoke(parseFun);
+        }catch (Exception e){
+            throw new RuntimeException("parseColName error",e);
+        }
         SerializedLambda serializedLambda = (SerializedLambda) sl;
         String className=serializedLambda.getImplClass();
         className=className.replace("/",".");
@@ -24,7 +29,7 @@ public class ColNameUtil {
             methodName = methodName.substring(2);
         } else {
             if (!methodName.startsWith("get") && !methodName.startsWith("set")) {
-                throw new IllegalArgumentException("Error parsing property name '" + methodName
+                throw new RuntimeException("Error parsing property name '" + methodName
                         + "'.  Didn't start with 'is', 'get' or 'set'.");
             }
             methodName = methodName.substring(3);
@@ -35,9 +40,15 @@ public class ColNameUtil {
         }
         return getColName(className, methodName);
     }
-    private static String getColName(String className, String attrName) throws Exception {
-        Class cls=Class.forName(className);
-        Field field=cls.getDeclaredField(attrName);
+    private static String getColName(String className, String attrName) {
+        Class cls=null;
+        Field field= null;
+        try {
+            cls=Class.forName(className);
+            field = cls.getDeclaredField(attrName);
+        } catch (Exception e) {
+            throw new RuntimeException("getColName error", e);
+        }
         TableField tableField=field.getAnnotation(TableField.class);
         if(tableField!=null){
             return tableField.value();
@@ -46,6 +57,6 @@ public class ColNameUtil {
         if(tableId!=null){
             return tableId.value();
         }
-        throw new Exception("can not found colname for "+className+"."+attrName);
+        throw new RuntimeException("can not found colname for "+className+"."+attrName);
     }
 }
