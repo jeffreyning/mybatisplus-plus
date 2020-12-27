@@ -1,6 +1,10 @@
 # mybatisplus-plus
 mybatisplus-plus对mybatisplus的一些功能补充
 
+**根据多个字段联合主键增删改查**
+原生mybatisplus只支持一个主键，mpp支持多个字段联合主键增删改查，mapper需要继承MppBaseMapper<br>
+实体类中联合主键的字段需要用@MppMultiId注解修饰<br>
+
 **自动填充优化功能 & 自动扫描Entity类构建ResultMap功能**
 原生mybatisplus只能做%s+1和now两种填充，mybatisplus-plus在插入或更新时对指定字段进行自定义复杂sql填充。<br>
 需要在实体类字段上用原生注解@TableField设置fill=FieldFill.INSERT fill=FieldFill.UPDATE或fill=FieldFill.INSERT_UPDATE否则不会触发自定义填充<br>
@@ -38,7 +42,7 @@ mpp的lambda方式<br>
     <dependency>
         <groupId>com.github.jeffreyning</groupId>
         <artifactId>mybatisplus-plus</artifactId>
-        <version>1.1.2-RELEASE</version>
+        <version>1.2.0-RELEASE</version>
     </dependency>
 ````
 
@@ -154,6 +158,50 @@ public interface TestMapper extends BaseMapper<TestEntity> {
        System.out.println(ColNameUtil.pn(TestEntity::getId));
        System.out.println(ColNameUtil.pn(JoinEntity::getSome2));
        System.out.println(ColNameUtil.pn(JoinEntity::getUpdateTime));
+````
+
+**根据多个字段联合主键增删改查**
+在实例类成员变量上使用@MppMultiId表明联合主键
+````
+@TableName("test07")
+public class Test07Entity {
+    @MppMultiId
+    @TableField(value = "k1")
+    private Integer k1;
+
+    @MppMultiId
+    @TableField(value = "k2")
+    private String k2;
+    
+    @TableField(value = "col1")
+    private String col1;
+    @TableField(value = "col2")
+    private String col2;    
+````
+
+mapper需要继承MppBaseMapper
+````
+@Mapper
+public interface Test07Mapper extends MppBaseMapper<Test07Entity> {
+}
+````
+根据多主键增删改查
+````
+    public void testMultiId(){
+        //id
+        Test07Entity idEntity=new Test07Entity();
+        idEntity.setK1(1);
+        idEntity.setK2("111");
+        //del
+        test07Mapper.deleteByMultiId(idEntity);
+        //add
+        test07Mapper.insert(idEntity);
+        //query
+        Test07Entity retEntity=test07Mapper.selectByMultiId(idEntity);
+        retEntity.setCol1("xxxx");
+        //update
+        test07Mapper.updateByMultiId(retEntity);
+    }
 ````
 
 **demo下载**
