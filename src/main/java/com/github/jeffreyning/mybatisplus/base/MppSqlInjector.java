@@ -18,6 +18,8 @@ public class MppSqlInjector extends DefaultSqlInjector {
     public List<AbstractMethod> getMethodList(Class<?> mapperClass) {
         List<AbstractMethod> methodList = super.getMethodList(mapperClass);
         methodList.add(new SelectByMultiIdMethod());
+        methodList.add(new UpdateByMultiIdMethod());
+        methodList.add(new DeleteByMultiIdMethod());
         return methodList;
     }
 }

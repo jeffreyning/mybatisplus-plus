@@ -1,13 +1,12 @@
 package com.github.jeffreyning.mybatisplus.base;
 
+import com.baomidou.mybatisplus.core.enums.SqlMethod;
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.metadata.TableFieldInfo;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
 import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
-import com.github.jeffreyning.mybatisplus.conf.PlusConfig;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlSource;
-import org.apache.ibatis.scripting.defaults.RawSqlSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,12 +15,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * @author ninghao
  */
-public class SelectByMultiIdMethod extends AbstractMethod {
-    private static final Logger logger = LoggerFactory.getLogger(SelectByMultiIdMethod.class);
+public class DeleteByMultiIdMethod extends AbstractMethod {
+    private static final Logger logger = LoggerFactory.getLogger(DeleteByMultiIdMethod.class);
     private String getCol(List<TableFieldInfo> fieldList, String attrName){
         for(TableFieldInfo tableFieldInfo: fieldList){
             String prop=tableFieldInfo.getProperty();
@@ -58,21 +56,23 @@ public class SelectByMultiIdMethod extends AbstractMethod {
         });
         return sb.toString();
     }
-    @Override
     public MappedStatement injectMappedStatement(Class<?> mapperClass, Class<?> modelClass, TableInfo tableInfo) {
-
         String cWhere=createWhere(modelClass, tableInfo);
         if(cWhere==null){
             return null;
         }
-        //
-        String sql = "SELECT %s FROM %s WHERE "+cWhere+" %s";
-
-        String method = "selectByMultiId";
-
-        SqlSource sqlSource = new RawSqlSource(this.configuration, String.format(sql, this.sqlSelectColumns(tableInfo, false), tableInfo.getTableName(), tableInfo.getLogicDeleteSql(true, true)), Object.class);
-        return this.addSelectMappedStatementForTable(mapperClass, method, sqlSource, tableInfo);
-
+        String methodName="deleteByMultiId";
+        SqlSource sqlSource;
+        if (tableInfo.isLogicDelete()) {
+            String sqlTemp="<script>\nUPDATE %s %s WHERE "+cWhere+" %s\n</script>";
+            String sql = String.format(sqlTemp, tableInfo.getTableName(), this.sqlLogicSet(tableInfo), tableInfo.getLogicDeleteSql(true, true));
+            sqlSource = this.languageDriver.createSqlSource(this.configuration, sql, Object.class);
+            return this.addUpdateMappedStatement(mapperClass, modelClass, methodName, sqlSource);
+        } else {
+            String sqlTemp = "DELETE FROM %s WHERE "+cWhere;
+            String sql = String.format(sqlTemp, tableInfo.getTableName());
+            sqlSource = this.languageDriver.createSqlSource(this.configuration, sql, Object.class);
+            return this.addDeleteMappedStatement(mapperClass, methodName, sqlSource);
+        }
     }
-
 }
