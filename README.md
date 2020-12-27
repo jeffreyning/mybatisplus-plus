@@ -38,7 +38,7 @@ mpp的lambda方式<br>
     <dependency>
         <groupId>com.github.jeffreyning</groupId>
         <artifactId>mybatisplus-plus</artifactId>
-        <version>1.1.0-RELEASE</version>
+        <version>1.1.2-RELEASE</version>
     </dependency>
 ````
 
@@ -50,10 +50,12 @@ mpp的lambda方式<br>
     private String seqno;
 ````
 
-**在实体类主键字段上设置@InsertFill，在插入时对id字段自动填充复杂计算值**
+**在实体类上设置@KeySequence，在插入时对id字段自动填充复杂计算值**
 ````
+@KeySequence("select lpad(max(seqno)+3,10,'0') from test")
+@TableName(value = "test")
+public class TestEntity {
     @TableId(value = "id", type=IdType.INPUT)
-    @InsertFill("select CONVERT(max(seqno)+3,SIGNED) from test")
     private Integer id;
 ````
 
@@ -66,9 +68,12 @@ mpp的lambda方式<br>
 ````
 
 **在启动类中使用@EnableMPP启动扩展自定义填充功能和自动创建resultmap功能**
+**在启动类中使用@EnableKeyGen启动主键自定义主键填充功能**
+注意如果自己实现了IKeyGenerator会与@EnableKeyGen冲突
 ````
 @SpringBootApplication
 @EnableMPP
+@EnableKeyGen
 public class PlusDemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(PlusDemoApplication.class, args);
@@ -152,8 +157,8 @@ public interface TestMapper extends BaseMapper<TestEntity> {
 ````
 
 **demo下载**
-mybatisplus-plus 1.1.1 示例工程下载地址
-链接：https://pan.baidu.com/s/1X7pftcq5LJvsze7mDK1ALQ
+mybatisplus-plus 1.1.2 示例工程下载地址
+链接：https://pan.baidu.com/s/1BCFwmqkm0rBZ32kt5xdEFA
 
 扫描订阅公众号，回复"plus"获取下载密码
 ![Image text](http://www.jrnsoft.com/qrcode_for_gh.jpg)
