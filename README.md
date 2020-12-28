@@ -205,8 +205,8 @@ public interface Test07Mapper extends MppBaseMapper<Test07Entity> {
 ````
 
 **demo下载**
-mybatisplus-plus 1.1.2 示例工程下载地址
-链接：https://pan.baidu.com/s/1BCFwmqkm0rBZ32kt5xdEFA
+mybatisplus-plus 1.2.0 示例工程下载地址
+链接：https://pan.baidu.com/s/1k7vP8NYWhJtUF24lQOppFg
 
 扫描订阅公众号，回复"plus"获取下载密码
 ![Image text](http://www.jrnsoft.com/qrcode_for_gh.jpg)
