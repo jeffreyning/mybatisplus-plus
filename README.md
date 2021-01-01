@@ -5,6 +5,11 @@ mybatisplus-plus对mybatisplus的一些功能补充
 原生mybatisplus只支持一个主键，mpp支持多个字段联合主键增删改查，mapper需要继承MppBaseMapper<br>
 实体类中联合主键的字段需要用@MppMultiId注解修饰<br>
 
+**优化分页插件实现在不分页时进行排序操作**
+原生mybatisplus分页与排序是绑定的，mpp优化了分页插件，使用MppPaginationInterceptor插件<br>
+在不分页的情况下支持排序操作<br>
+page参数size设置为-1可实现不分页取全量数据，同时设置OrderItem可以实现排序<br>
+
 **自动填充优化功能 & 自动扫描Entity类构建ResultMap功能**
 原生mybatisplus只能做%s+1和now两种填充，mybatisplus-plus在插入或更新时对指定字段进行自定义复杂sql填充。<br>
 需要在实体类字段上用原生注解@TableField设置fill=FieldFill.INSERT fill=FieldFill.UPDATE或fill=FieldFill.INSERT_UPDATE否则不会触发自定义填充<br>
@@ -203,10 +208,38 @@ public interface Test07Mapper extends MppBaseMapper<Test07Entity> {
         test07Mapper.updateByMultiId(retEntity);
     }
 ````
+**优化分页插件实现在不分页时进行排序操作**
+使用MppPaginationInterceptor插件
+````
+    @Bean
+    public PaginationInterceptor paginationInterceptor() {
+        return new MppPaginationInterceptor();
+    }
+
+````
+mapper中按照一般分页接口定义，同时支持返回值为list或page对象的写法
+````
+@Mapper
+public interface TestMapper extends BaseMapper<TestEntity> {
+    public List<JoinEntity> queryUseRM(Page page);
+}
+````
+page参数设置size=-1为全量查询，size>0时正常分页，设置OrderItem进行无论是否分页都实现排序
+````
+    public void testOrder(){
+        Page page=new Page();
+
+        page.setSize(-1);
+        page.addOrder(new OrderItem().setColumn("test.id").setAsc(true));
+        page.addOrder(new OrderItem().setColumn("test2.some2").setAsc(true));
+
+        List rp=testMapper.queryUseRM(page);
+    }
+````
 
 **demo下载**
-mybatisplus-plus 1.2.0 示例工程下载地址
-链接：https://pan.baidu.com/s/1k7vP8NYWhJtUF24lQOppFg
+mybatisplus-plus 1.3.0 示例工程下载地址
+链接：https://pan.baidu.com/s/1wyMBHS4ke_oLEEYOld6-jQ
 
 扫描订阅公众号，回复"plus"获取下载密码
 ![Image text](http://www.jrnsoft.com/qrcode_for_gh.jpg)
