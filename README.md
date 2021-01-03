@@ -4,6 +4,7 @@ mybatisplus-plus对mybatisplus的一些功能补充
 **根据多个字段联合主键增删改查**
 原生mybatisplus只支持一个主键，mpp支持多个字段联合主键增删改查，mapper需要继承MppBaseMapper<br>
 实体类中联合主键的字段需要用@MppMultiId注解修饰<br>
+如果需要在service使用多主键相关操作，可以直接继承IMppService接口<br>
 
 **优化分页插件实现在不分页时进行排序操作**
 原生mybatisplus分页与排序是绑定的，mpp优化了分页插件，使用MppPaginationInterceptor插件<br>
@@ -47,7 +48,7 @@ mpp的lambda方式<br>
     <dependency>
         <groupId>com.github.jeffreyning</groupId>
         <artifactId>mybatisplus-plus</artifactId>
-        <version>1.3.0-RELEASE</version>
+        <version>1.3.1-RELEASE</version>
     </dependency>
 ````
 
@@ -208,6 +209,35 @@ public interface Test07Mapper extends MppBaseMapper<Test07Entity> {
         test07Mapper.updateByMultiId(retEntity);
     }
 ````
+service层继承IMppService
+````
+public interface Test07Service extends IMppService<Test07Entity> {
+}
+@Service
+public class Test07ServiceImpl extends ServiceImpl<Test07Mapper, Test07Entity> implements Test07Service {
+}
+````
+
+在service层调用多主键操作
+````
+    public void testMultiIdService(){
+        //id
+        Test07Entity idEntity=new Test07Entity();
+        idEntity.setK1(1);
+        idEntity.setK2("111");
+        //del
+
+        test07Service.deleteByMultiId(idEntity);
+        //add
+        test07Service.save(idEntity);
+        //query
+        Test07Entity retEntity=test07Service.selectByMultiId(idEntity);
+        retEntity.setCol1("xxxx");
+        //update
+        test07Mapper.updateByMultiId(retEntity);
+    }
+````
+
 **优化分页插件实现在不分页时进行排序操作**
 使用MppPaginationInterceptor插件
 ````
