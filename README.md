@@ -269,7 +269,7 @@ page参数设置size=-1为全量查询，size>0时正常分页，设置OrderItem
 
 **demo下载**
 mybatisplus-plus 1.3.0 示例工程下载地址
-链接：https://pan.baidu.com/s/1wyMBHS4ke_oLEEYOld6-jQ
+链接：https://pan.baidu.com/s/1EK25XC6wdQpvKAsj63kiqA
 
 扫描订阅公众号，回复"plus"获取下载密码
 ![Image text](http://www.jrnsoft.com/qrcode_for_gh.jpg)
