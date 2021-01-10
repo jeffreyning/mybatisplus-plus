@@ -2,7 +2,7 @@
 mybatisplus-plus对mybatisplus的一些功能补充
 
 **根据多个字段联合主键增删改查**
-原生mybatisplus只支持一个主键，mpp支持多个字段联合主键增删改查，mapper需要继承MppBaseMapper<br>
+原生mybatisplus只支持一个主键，mpp支持多个字段联合主键（复合主键）增删改查，mapper需要继承MppBaseMapper<br>
 实体类中联合主键的字段需要用@MppMultiId注解修饰<br>
 如果需要在service使用多主键相关操作，可以直接继承IMppService接口<br>
 
@@ -268,7 +268,7 @@ page参数设置size=-1为全量查询，size>0时正常分页，设置OrderItem
 ````
 
 **demo下载**
-mybatisplus-plus 1.3.0 示例工程下载地址
+mybatisplus-plus 1.3.1 示例工程下载地址
 链接：https://pan.baidu.com/s/1EK25XC6wdQpvKAsj63kiqA
 
 扫描订阅公众号，回复"plus"获取下载密码
