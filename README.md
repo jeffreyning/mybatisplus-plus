@@ -4,7 +4,7 @@ mybatisplus-plus对mybatisplus的一些功能补充
 **根据多个字段联合主键增删改查**
 原生mybatisplus只支持一个主键，mpp支持多个字段联合主键（复合主键）增删改查，mapper需要继承MppBaseMapper<br>
 实体类中联合主键的字段需要用@MppMultiId注解修饰<br>
-如果需要在service使用多主键相关操作，可以直接继承IMppService接口<br>
+如果需要在service使用多主键相关操作包括saveOrUpdateByMultiId和批量操作updateBatchByMultiId和saveOrUpdateBatchByMultiId，可以直接继承IMppService接口<br>
 
 **优化分页插件实现在不分页时进行排序操作**
 原生mybatisplus分页与排序是绑定的，mpp优化了分页插件，使用MppPaginationInterceptor插件<br>
@@ -209,12 +209,11 @@ public interface Test07Mapper extends MppBaseMapper<Test07Entity> {
         test07Mapper.updateByMultiId(retEntity);
     }
 ````
-service层继承IMppService
+service层继承IMppService接口和MppServiceImpl
 ````
 public interface Test07Service extends IMppService<Test07Entity> {
 }
-@Service
-public class Test07ServiceImpl extends ServiceImpl<Test07Mapper, Test07Entity> implements Test07Service {
+public class Test07ServiceImpl extends MppServiceImpl<Test07Mapper, Test07Entity> implements Test07Service {
 }
 ````
 
@@ -238,6 +237,76 @@ public class Test07ServiceImpl extends ServiceImpl<Test07Mapper, Test07Entity> i
     }
 ````
 
+根据复合主键进行批量操作和saveOrUpdate操作
+````
+    @Test
+    public void testSaveOrUpdateByMultiIdService(){
+        //id
+        Test07Entity idEntity=new Test07Entity();
+        idEntity.setK1(6);
+        idEntity.setK2("666");
+        //del
+        test07Service.deleteByMultiId(idEntity);
+        //add
+        test07Service.saveOrUpdateByMultiId(idEntity);
+        //update
+        idEntity.setCol1("ccccc");
+        test07Service.saveOrUpdateByMultiId(idEntity);
+
+    }
+
+    @Test
+    public void testSaveOrUpdateBatchByMultiIdService(){
+        //ids
+        List<Test07Entity> entityList=new ArrayList<Test07Entity>();
+        for(int i=10;i<30;i++){
+            Test07Entity idEntity=new Test07Entity();
+            idEntity.setK1(i);
+            idEntity.setK2(String.valueOf(i*10));
+            entityList.add(idEntity);
+        }
+
+        //del
+        for(Test07Entity idEntity:entityList) {
+            test07Service.deleteByMultiId(idEntity);
+        }
+        //add batch
+        test07Service.saveOrUpdateBatchByMultiId(entityList);
+        //del
+        for(Test07Entity idEntity:entityList) {
+            idEntity.setCol1(new Date().toString());
+        }
+        //update batch
+        test07Service.saveOrUpdateBatchByMultiId(entityList);
+
+    }
+
+    @Test
+    public void testUpdateBatchByMultiIdService(){
+        //ids
+        List<Test07Entity> entityList=new ArrayList<Test07Entity>();
+        for(int i=50;i<80;i++){
+            Test07Entity idEntity=new Test07Entity();
+            idEntity.setK1(i);
+            idEntity.setK2(String.valueOf(i*10));
+            entityList.add(idEntity);
+        }
+
+        //del
+        for(Test07Entity idEntity:entityList) {
+            test07Service.deleteByMultiId(idEntity);
+        }
+        //add batch
+        test07Service.saveOrUpdateBatchByMultiId(entityList);
+        //del
+        for(Test07Entity idEntity:entityList) {
+            idEntity.setCol1(new Date().toString());
+        }
+        //update batch
+        test07Service.updateBatchByMultiId(entityList);
+
+    }
+````
 **优化分页插件实现在不分页时进行排序操作**
 使用MppPaginationInterceptor插件
 ````
@@ -268,8 +337,8 @@ page参数设置size=-1为全量查询，size>0时正常分页，设置OrderItem
 ````
 
 **demo下载**
-mybatisplus-plus 1.3.1 示例工程下载地址
-链接：https://pan.baidu.com/s/1EK25XC6wdQpvKAsj63kiqA
+mybatisplus-plus 1.5.0 示例工程下载地址
+链接：链接：https://pan.baidu.com/s/1spa53ShHyXJendr4pMAKsQ 
 
 扫描订阅公众号，回复"plus"获取下载密码
 ![Image text](http://www.jrnsoft.com/qrcode_for_gh.jpg)
