@@ -48,7 +48,7 @@ mpp的lambda方式<br>
     <dependency>
         <groupId>com.github.jeffreyning</groupId>
         <artifactId>mybatisplus-plus</artifactId>
-        <version>1.3.1-RELEASE</version>
+        <version>1.5.0-RELEASE</version>
     </dependency>
 ````
 
