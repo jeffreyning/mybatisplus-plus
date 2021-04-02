@@ -336,6 +336,29 @@ page参数设置size=-1为全量查询，size>0时正常分页，设置OrderItem
     }
 ````
 
+**常见问题说明**
+报错Caused by: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found):
+解决方法：在启动类中使用@EnableMPP注解，一般报Invalid bound statement (not found)都是没有使用@EnableMPP
+
+添加后启动报错required a single bean, but 2 were found
+产生原因:添加@EnableMpp后会启用内置的metaObjectHandler实现类实现自动填充功能，如果旧项目中自行实现了metaObjectHandler会产生required a single bean类似冲突
+解决方法:需删掉自定义的继承metaObjectHandler实现的填充功能
+
+如何整合pagehelper插件
+mybatisplus本身有分页常见，如果一定要使用pagehelper插件的话，与原生的mybatisplus有冲突
+解决方法为：使用以下代码加载pageHelper(版本为5.1.10)
+```
+    @Bean
+    ConfigurationCustomizer mybatisConfigurationCustomizer() {
+        return new ConfigurationCustomizer() {
+            @Override
+            public void customize(Configuration configuration) {
+                configuration.addInterceptor(new com.github.pagehelper.PageInterceptor());
+            }
+        };
+    }
+```
+
 **demo下载**
 mybatisplus-plus 1.5.0 示例工程下载地址
 链接：链接：https://pan.baidu.com/s/1spa53ShHyXJendr4pMAKsQ 
