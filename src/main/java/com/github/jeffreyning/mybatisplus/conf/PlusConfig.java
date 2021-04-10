@@ -25,7 +25,9 @@ import java.util.Set;
 /**
  * @author ninghao
  */
-@Import({DataAutoFill.class, PlusACUtils.class, MppSqlInjector.class})
+//@Import({DataAutoFill.class, PlusACUtils.class, MppSqlInjector.class})
+//modify 1.5.1
+@Import({PlusACUtils.class, MppSqlInjector.class})
 @Configuration
 public class PlusConfig {
     private static final Logger logger = LoggerFactory.getLogger(PlusConfig.class);

@@ -41,7 +41,7 @@ public class ScanUtil {
 
     private static Set<Class> getFileClasses(URL url, String packagePath) {
         Set<Class> res = new HashSet();
-        String filePath = url.getFile();
+        String filePath = url.getFile().replace("%20"," ");
         File dir = new File(filePath);
         String[] list = dir.list();
         if (list == null) return res;
