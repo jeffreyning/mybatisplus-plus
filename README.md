@@ -52,13 +52,7 @@ mpp的lambda方式<br>
     </dependency>
 ````
 
-**在实体类字段上设置@InsertFill，在插入时对seqno字段自动填充复杂计算值**
-查询当前最大的seqno值并加3，转换成10位字符串，不够位数时用0填充
-````
-    @TableField(value="seqno",fill=FieldFill.INSERT )
-    @InsertFill("select lpad(max(seqno)+3,10,'0') from test")
-    private String seqno;
-````
+
 
 **在实体类上设置@KeySequence，在插入时对id字段自动填充复杂计算值**
 ````
@@ -68,13 +62,21 @@ public class TestEntity {
     @TableId(value = "id", type=IdType.INPUT)
     private Integer id;
 ````
-
+**1.5.1版本之后需使用@EnableAutoFill注解整体开启自动注入功能**
 **在实体类字段上设置@InsertFill @UpdateFill，插入和更新时使用当前时间填充**
 ````
     @InsertFill("select now()")
     @UpdateFill("select now()")
     @TableField(value="update_time",fill=FieldFill.INSERT_UPDATE)
     private Date updateTime;
+````
+
+**在实体类字段上设置@InsertFill，在插入时对seqno字段自动填充复杂计算值**
+查询当前最大的seqno值并加3，转换成10位字符串，不够位数时用0填充
+````
+    @TableField(value="seqno",fill=FieldFill.INSERT )
+    @InsertFill("select lpad(max(seqno)+3,10,'0') from test")
+    private String seqno;
 ````
 
 **在启动类中使用@EnableMPP启动扩展自定义填充功能和自动创建resultmap功能**
