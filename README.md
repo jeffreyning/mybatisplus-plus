@@ -347,6 +347,24 @@ _添加@EnableMPP后启动报错required a single bean, but 2 were found_
 产生原因:添加@EnableMpp后会启用内置的metaObjectHandler实现类实现自动填充功能，如果旧项目中自行实现了metaObjectHandler会产生required a single bean类似冲突
 解决方法:需删掉自定义的继承metaObjectHandler实现的填充功能
 
+_如果加了@EnableMPP后仍然报Invalid bound statement (not found)_
+
+需要检查是否实现了自定义的SqlSessionFactory，如果实现自定义的SqlSessionFactory则需要手工注入
+MppSqlInjector（否则引发Invalid bound statement）, MppKeyGenerator(否则无法主键生成), DataAutoFill（否则无法自动填充）
+自定义SqlSessionFactory注入示例如下
+```    @Bean
+    public SqlSessionFactory sqlSessionFactory(DataSource dateSource, MybatisPlusProperties properties, MppSqlInjector mppSqlInjector, MppKeyGenerator mppKeyGenerator, DataAutoFill dataAutoFill) throws Exception {
+        MybatisSqlSessionFactoryBean bean=new MybatisSqlSessionFactoryBean();
+        GlobalConfig globalConfig = properties.getGlobalConfig();
+        globalConfig.setSqlInjector(mppSqlInjector);
+        globalConfig.setMetaObjectHandler(dataAutoFill);
+        globalConfig.getDbConfig().setKeyGenerator(mppKeyGenerator);
+        bean.setDataSource(dateSource);
+        bean.setGlobalConfig(globalConfig);
+        return bean.getObject();
+    }
+```
+
 _如何整合pagehelper插件_
 
 mybatisplus本身有分页常见，如果一定要使用pagehelper插件的话，与原生的mybatisplus有冲突
@@ -362,6 +380,7 @@ mybatisplus本身有分页常见，如果一定要使用pagehelper插件的话�
         };
     }
 ```
+
 
 **兼容性说明**
 
