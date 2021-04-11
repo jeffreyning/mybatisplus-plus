@@ -48,7 +48,7 @@ mpp的lambda方式<br>
     <dependency>
         <groupId>com.github.jeffreyning</groupId>
         <artifactId>mybatisplus-plus</artifactId>
-        <version>1.5.0-RELEASE</version>
+        <version>1.5.1-RELEASE</version>
     </dependency>
 ````
 
@@ -389,9 +389,11 @@ mybatisplus本身有分页常见，如果一定要使用pagehelper插件的话�
 mybatisplus-plus1.5.0兼容mybatisplus3.3.1(mybatis3.5.3)到最新版mybatisplus3.4.2(mybatis3.5.6)
 
 **demo下载**
+mybatisplus-plus 1.5.1 示例工程下载地址
+链接：https://pan.baidu.com/s/1XfRy1jrTyOefp3bqiAmNwg
 
 mybatisplus-plus 1.5.0 示例工程下载地址
-链接：链接：https://pan.baidu.com/s/1spa53ShHyXJendr4pMAKsQ 
+链接：https://pan.baidu.com/s/1spa53ShHyXJendr4pMAKsQ 
 
 扫码（或搜索"爱好与编程"）订阅公众号，回复"plus"获取下载密码
 ![Image text](http://www.jrnsoft.com/qrcode_for_gh.jpg)
