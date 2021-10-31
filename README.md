@@ -391,7 +391,11 @@ mybatisplus-plus1.5.1与最高到mybatisplus3.4.3.1兼容
 （mybatisplus-plus1.5.1与mybatisplus3.4.3不兼容，mybatisplus3.4.3自身有bug无法使用，报sun.reflect.generics.reflectiveObjects.TypeVariableImpl cannot be cast to java.lang.Class）
 （mybatisplus-plus1.5.1与mybatisplus3.4.3.2不兼容，报org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)）
 mybatisplus-plus1.6.0与mybatisplus3.4.3.2+兼容（已经测试到mybatisplus3.4.3.4）
+
 **demo下载**
+mybatisplus-plus 1.6.0 示例工程下载地址
+https://pan.baidu.com/s/1ZnLBkl27dr6KVg8D_Pn0Jw
+
 mybatisplus-plus 1.5.1 示例工程下载地址
 链接：https://pan.baidu.com/s/1XfRy1jrTyOefp3bqiAmNwg
 
