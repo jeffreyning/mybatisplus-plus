@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
+//import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +20,8 @@ public class LambdaUtil {
         }
         return colName;
     }
-    public static void setValue(Class cls, String fileName, Object value)
+    //for jdk11 cancel ognl 202203 mpp1.7.0
+/*    public static void setValue(Class cls, String fileName, Object value)
             throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
         Field field = cls.getDeclaredField(fileName);
         field.setAccessible(true);
@@ -28,7 +29,7 @@ public class LambdaUtil {
         modifiersField.setAccessible(true);
         modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
         field.set(cls, value);
-    }
+    }*/
     public static void createColDict(Class cls){
         Field[] fields=cls.getDeclaredFields();
         for (Field field:fields){

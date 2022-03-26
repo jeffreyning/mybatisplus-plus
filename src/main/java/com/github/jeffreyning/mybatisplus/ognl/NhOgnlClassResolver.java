@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author ninghao
+ * for jdk11 cancel ognl 202203 mpp1.7.0
  */
 public class NhOgnlClassResolver extends OgnlClassResolver {
     public List<String> baseList=new ArrayList();

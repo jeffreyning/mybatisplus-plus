@@ -1,9 +1,10 @@
-package com.github.jeffreyning.mybatisplus.check;
+package com;
 
 import com.github.jeffreyning.mybatisplus.util.LambdaUtil;
 
 /**
  * @author ninghao
+ * for jdk11 cancel ognl 202203 mpp1.7.0 mpp short package path
  */
 public class MPP {
     public static String col(String lamdbaFunc){

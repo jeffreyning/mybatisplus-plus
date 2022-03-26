@@ -2,12 +2,12 @@ package com.github.jeffreyning.mybatisplus.conf;
 
 import com.github.jeffreyning.mybatisplus.base.MppSqlInjector;
 import com.github.jeffreyning.mybatisplus.handler.DataAutoFill;
-import com.github.jeffreyning.mybatisplus.ognl.NhOgnlClassResolver;
+//import com.github.jeffreyning.mybatisplus.ognl.NhOgnlClassResolver;
 import com.github.jeffreyning.mybatisplus.scan.ResultMapUtil;
 import com.github.jeffreyning.mybatisplus.scan.ScanUtil;
 import com.github.jeffreyning.mybatisplus.util.LambdaUtil;
 import com.github.jeffreyning.mybatisplus.util.PlusACUtils;
-import org.apache.ibatis.scripting.xmltags.OgnlCache;
+//import org.apache.ibatis.scripting.xmltags.OgnlCache;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +43,8 @@ public class PlusConfig {
 
     @PostConstruct
     public void initRM() throws Exception {
+        //for jdk11 cancel ognl 202203 mpp1.7.0
+        /*
         NhOgnlClassResolver resolver=new NhOgnlClassResolver();
         resolver.baseList.add("com.github.jeffreyning.mybatisplus.check");
         LambdaUtil.setValue(OgnlCache.class,"CLASS_RESOLVER",resolver);
@@ -54,8 +56,7 @@ public class PlusConfig {
             for(String up:utilPaths){
                 resolver.baseList.add(up);
             }
-        }
-
+        }*/
         String basePaths=env.getProperty("mpp.entityBasePath");
         if(basePaths==null || "".equals(basePaths) ){
             logger.error("mpp.entityBasePath is null skip scan result map");
