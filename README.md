@@ -128,13 +128,13 @@ public class JoinEntity extends TestEntity{
 mpp:
   entityBasePath: com.github.jeffreyning.mybatisplus.demo.entity
 ````
-**配置文件中加入ognl执行java静态方法的类加载默认路径，多个路径用逗号分隔**
+**配置文件中加入ognl执行java静态方法的类加载默认路径，多个路径用逗号分隔(1.7.0此配置已经删除)**
 ````
 mpp:
   utilBasePath: com.github.jeffreyning.mybatisplus.demo.common
 ````
 
-**xml文件中引入自动生成的resultMap & xml中使用省略包名调用静态方法 & @MPP@col通过entity的lambda表达式翻译列名**
+**xml文件中引入自动生成的resultMap & xml中使用省略包名调用静态方法（1.7.0省略包名已经删除，使用com.MPP） & @com.MPP@col通过entity的lambda表达式翻译列名**
 ````
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -144,9 +144,8 @@ mpp:
     </select>
     <select id="queryUse" resultMap="scan.mybatis-plus_JoinEntity">
         select * from test inner join test2 on test.id=test2.refid
-        where test.create_time <![CDATA[ <= ]]> #{${@MPP@col("TestEntity::getCreateTime")}}
-        and test.id=#{${@MPP@col("TestEntity::getId")}}
-        and update_time <![CDATA[ <= ]]> #{${@ColInfo@updateTime}}
+        where test.create_time <![CDATA[ <= ]]> #{${@com.MPP@col("TestEntity::getCreateTime")}}
+        and test.id=#{${@com.MPP@col("TestEntity::getId")}}
     </select>
 </mapper>
 ````
@@ -391,6 +390,7 @@ mybatisplus-plus1.5.1与最高到mybatisplus3.4.3.1兼容
 （mybatisplus-plus1.5.1与mybatisplus3.4.3不兼容，mybatisplus3.4.3自身有bug无法使用，报sun.reflect.generics.reflectiveObjects.TypeVariableImpl cannot be cast to java.lang.Class）
 （mybatisplus-plus1.5.1与mybatisplus3.4.3.2不兼容，报org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)）
 mybatisplus-plus1.6.0与mybatisplus3.4.3.2+兼容（已经测试到mybatisplus3.4.3.4）
+mybatisplus-plus1.7.0兼容jdk11(删除了自定义ognl根路径功能)
 
 **demo下载**
 mybatisplus-plus 1.6.0 示例工程下载地址
