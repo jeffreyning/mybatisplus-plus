@@ -393,6 +393,9 @@ mybatisplus-plus1.6.0与mybatisplus3.4.3.2+兼容（已经测试到mybatisplus3.
 mybatisplus-plus1.7.0兼容jdk11(删除了自定义ognl根路径功能)
 
 **demo下载**
+mybatisplus-plus 1.7.0 示例工程下载地址
+https://pan.baidu.com/s/1jI5X0xDDUT4L6gl6QijFHA
+
 mybatisplus-plus 1.6.0 示例工程下载地址
 https://pan.baidu.com/s/1ZnLBkl27dr6KVg8D_Pn0Jw
 
