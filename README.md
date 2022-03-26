@@ -28,18 +28,18 @@ mybatisplus-plus使用@UpdateFill注解触发更新时，执行注解中自定�
 做连表查询时，输入参数往往不是单一的实体类，而是采用更灵活的Map对象，<br>
 但map中key参数的名称定义过于随便，可以使用接口定义常量。但原生mybatis在xml中调用静态类方法和变量时需要填写完整的包名不利于大量采用<br>
 是否可以像在mybatisplus中使用lambda表达式翻译entity中的列名称<br>
-mpp做了封装支持xml的ognl中引入默认包名，并支持lambda定义列名称<br>
+mpp做了封装支持xml的ognl中引入默认包名(为了兼容jdk11 mpp1.7.0的ognl默认包名功能已经删除)，并支持lambda定义列名称<br>
 例如xml使用以下语句引入map参数中create_time
 原生方式<br>
 ````
 #{create_time}
 ````
-mpp的默认包名引用接口常量方式<br>
+mpp的默认包名引用接口常量方式(1.7.0此配置已经删除)<br>
 配置文件中mpp.utilBasePath可设置ognl默认包名<br>
 ````
 #{${@ColInfo@createTime}}
 ````
-mpp的lambda方式<br>
+mpp的lambda方式(1.7.0中使用@com.MPP@col)<br>
 ````
 #{${@MPP@col("TestEntity::getCreateTime")}}
 ````
@@ -365,6 +365,15 @@ MppSqlInjector（否则引发Invalid bound statement）, MppKeyGenerator(否则�
         return bean.getObject();
     }
 ```
+
+_启动时报异常NoSuchFieldException: modifiers_
+``` 
+org.springframework.beans.factory.BeanCreationException: 
+Error creating bean with name 'com.github.jeffreyning.mybatisplus.conf.PlusConfig': 
+Invocation of init method failed; nested exception is java.lang.NoSuchFieldException: modifiers
+``` 
+应该是jdk11与自定义ognl加载机制不兼容导致的。
+mybatisplus-plus1.7.0删除了自定义ognl根路径功能，兼容jdk11。
 
 _如何整合pagehelper插件_
 
