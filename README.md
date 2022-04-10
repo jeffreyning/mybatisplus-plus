@@ -414,6 +414,8 @@ mybatisplus-plus 1.5.1 示例工程下载地址
 mybatisplus-plus 1.5.0 示例工程下载地址
 链接：https://pan.baidu.com/s/1spa53ShHyXJendr4pMAKsQ 
 
-扫码（或搜索"爱好与编程"）订阅公众号，回复"plus"获取下载密码
+欢迎添加qq群 **1028241274** 获取下载密码，并进行技术交流
+
+也可扫码（或搜索"爱好与编程"）订阅公众号，回复"plus"获取下载密码
 ![Image text](http://www.jrnsoft.com/qrcode_for_gh.jpg)
 
