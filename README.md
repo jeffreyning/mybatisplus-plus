@@ -375,6 +375,16 @@ Invocation of init method failed; nested exception is java.lang.NoSuchFieldExcep
 应该是jdk11与自定义ognl加载机制不兼容导致的。
 mybatisplus-plus1.7.0删除了自定义ognl根路径功能，兼容jdk11。
 
+_报 not found column for 'id'_
+mybatis-plus的问题，所有叫id的属性都自动注册为主键
+
+_启动时日志中有mpp.entityBasePath is null skip scan result map_
+只是个提示不影响，不想看到提示，mpp.entityBasePath可以配置到entity的包如entityBasePath: com.github.jeffreyning.mybatisplus.demo.entity；
+如果xml中有resultMap="scan.mybatis-plus_xxx"才需要配置mpp.entityBasePath
+
+_提示java.lang.RuntimeException: not found column for 'xxx'_
+是由于设置了@MppMultiId的字段没有同时设置@TableField(value = "xxx")导致的
+
 _如何整合pagehelper插件_
 
 mybatisplus本身有分页常见，如果一定要使用pagehelper插件的话，与原生的mybatisplus有冲突
@@ -402,6 +412,9 @@ mybatisplus-plus1.6.0与mybatisplus3.4.3.2+兼容（已经测试到mybatisplus3.
 mybatisplus-plus1.7.0兼容jdk11(删除了自定义ognl根路径功能)
 
 **demo下载**
+欢迎添加mpp技术交流qq群 **1028241274** 从群文件中下载各版本demo
+搜索"爱好与编程"订阅公众号，回复"plus"获取下载密码
+
 mybatisplus-plus 1.7.0 示例工程下载地址
 https://pan.baidu.com/s/1jI5X0xDDUT4L6gl6QijFHA
 
@@ -411,11 +424,8 @@ https://pan.baidu.com/s/1ZnLBkl27dr6KVg8D_Pn0Jw
 mybatisplus-plus 1.5.1 示例工程下载地址
 链接：https://pan.baidu.com/s/1XfRy1jrTyOefp3bqiAmNwg
 
-mybatisplus-plus 1.5.0 示例工程下载地址
-链接：https://pan.baidu.com/s/1spa53ShHyXJendr4pMAKsQ 
+mybatisplus-plus 1.5.0 示例工程下载地址 
+链接：https://pan.baidu.com/s/1spa53ShHyXJendr4pMAKsQ
 
-欢迎添加qq群 **1028241274** 获取下载密码，并进行技术交流
 
-也可扫码（或搜索"爱好与编程"）订阅公众号，回复"plus"获取下载密码
-![Image text](http://www.jrnsoft.com/qrcode_for_gh.jpg)
 
