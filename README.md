@@ -413,7 +413,7 @@ mybatisplus-plus1.7.0兼容jdk11(删除了自定义ognl根路径功能)
 
 **demo下载**
 欢迎添加mpp技术交流qq群 **1028241274** 从群文件中下载各版本demo
-搜索"爱好与编程"订阅公众号，回复"plus"获取下载密码
+或者从网盘中下载demo，下载密码需要搜索"爱好与编程"订阅公众号，回复"plus"获取
 
 mybatisplus-plus 1.7.0 示例工程下载地址
 https://pan.baidu.com/s/1jI5X0xDDUT4L6gl6QijFHA
