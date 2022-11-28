@@ -33,9 +33,9 @@ public class MppServiceImpl<M extends MppBaseMapper<T>, T> extends ServiceImpl<M
 
     private Map checkIdCol(Class<?> modelClass, TableInfo tableInfo){
         List<TableFieldInfo> fieldList=tableInfo.getFieldList();
-        Field[] fieldArray= modelClass.getDeclaredFields();
         Map<String, String> idMap=new HashMap();
-        for(Field field: fieldArray){
+        for(TableFieldInfo fieldInfo: fieldList){
+            Field field=fieldInfo.getField();
             MppMultiId mppMultiId= field.getAnnotation(MppMultiId.class);
             if(mppMultiId!=null){
                 String attrName=field.getName();

@@ -31,9 +31,9 @@ public class DeleteByMultiIdMethod extends AbstractMethod {
     }
     private String createWhere(Class<?> modelClass, TableInfo tableInfo){
         List<TableFieldInfo> fieldList=tableInfo.getFieldList();
-        Field[] fieldArray= modelClass.getDeclaredFields();
         Map<String, String> idMap=new HashMap();
-        for(Field field: fieldArray){
+        for(TableFieldInfo fieldInfo: fieldList){
+            Field field=fieldInfo.getField();
             MppMultiId mppMultiId= field.getAnnotation(MppMultiId.class);
             if(mppMultiId!=null){
                 String attrName=field.getName();
@@ -47,9 +47,7 @@ public class DeleteByMultiIdMethod extends AbstractMethod {
         }
         StringBuilder sb=new StringBuilder("");
         idMap.forEach((attrName, colName)->{
-            if(sb.length() <=0){
-
-            }else{
+            if(sb.length() >0){
                 sb.append(" and ");
             }
             sb.append(colName).append("=").append("#{").append(attrName).append("}");

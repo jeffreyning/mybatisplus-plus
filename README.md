@@ -48,7 +48,7 @@ mpp的lambda方式(1.7.0中使用@com.MPP@col)<br>
     <dependency>
         <groupId>com.github.jeffreyning</groupId>
         <artifactId>mybatisplus-plus</artifactId>
-        <version>1.5.1-RELEASE</version>
+        <version>1.7.0-RELEASE</version>
     </dependency>
 ````
 
@@ -401,6 +401,8 @@ mybatisplus本身有分页常见，如果一定要使用pagehelper插件的话�
     }
 ```
 
+**版本说明**
+mybatisplus-plus1.7.1支持继承多主键entity
 
 **兼容性说明**
 
@@ -415,6 +417,9 @@ mybatisplus-plus1.7.0兼容jdk11(删除了自定义ognl根路径功能)（与mpp
 欢迎添加mpp技术交流qq群 **1028241274** 从群文件中下载各版本demo
 或者从网盘中下载demo，下载密码需要搜索"爱好与编程"订阅公众号，回复"plus"获取
 
+mybatisplus-plus 1.7.1 示例工程下载地址
+https://pan.baidu.com/s/1wJk1xQfs5skqayaihzY_qg
+
 mybatisplus-plus 1.7.0 示例工程下载地址
 https://pan.baidu.com/s/1jI5X0xDDUT4L6gl6QijFHA
 
@@ -424,8 +429,6 @@ https://pan.baidu.com/s/1ZnLBkl27dr6KVg8D_Pn0Jw
 mybatisplus-plus 1.5.1 示例工程下载地址
 链接：https://pan.baidu.com/s/1XfRy1jrTyOefp3bqiAmNwg
 
-mybatisplus-plus 1.5.0 示例工程下载地址 
-链接：https://pan.baidu.com/s/1spa53ShHyXJendr4pMAKsQ
 
 我司有文档在线预览编辑工具，可以业务系统集成，提供在线预览编辑office文档、图片、pdf和文档格式转换等功能。还有oa、网盘、数字档案、移动端门户、即时通讯IM等产品有商机的朋友可与qq942225169联系，有提成！
 
