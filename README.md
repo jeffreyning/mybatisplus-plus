@@ -48,7 +48,7 @@ mpp的lambda方式(1.7.0中使用@com.MPP@col)<br>
     <dependency>
         <groupId>com.github.jeffreyning</groupId>
         <artifactId>mybatisplus-plus</artifactId>
-        <version>1.7.0-RELEASE</version>
+        <version>1.7.2-RELEASE</version>
     </dependency>
 ````
 
@@ -377,6 +377,7 @@ mybatisplus-plus1.7.0删除了自定义ognl根路径功能，兼容jdk11。
 
 _报 not found column for 'id'_
 mybatis-plus的问题，所有叫id的属性都自动注册为主键
+1.7.2版本已经解决了此问题，mpp的多主键@MppMultiId可以和mp的单主键@TableId兼容，同时修饰同一个field
 
 _启动时日志中有mpp.entityBasePath is null skip scan result map_
 只是个提示不影响，不想看到提示，mpp.entityBasePath可以配置到entity的包如entityBasePath: com.github.jeffreyning.mybatisplus.demo.entity；
@@ -402,6 +403,7 @@ mybatisplus本身有分页常见，如果一定要使用pagehelper插件的话�
 ```
 
 **版本说明**
+mybatisplus-plus1.7.2支持mpp的多主键@MppMultiId可以和mp的单主键@TableId兼容，同时修饰同一个field
 mybatisplus-plus1.7.1支持继承多主键entity
 
 **兼容性说明**
@@ -416,6 +418,9 @@ mybatisplus-plus1.7.0兼容jdk11(删除了自定义ognl根路径功能)（与mpp
 **demo下载**
 欢迎添加mpp技术交流qq群 **1028241274** 从群文件中下载各版本demo
 或者从网盘中下载demo，下载密码需要搜索"爱好与编程"订阅公众号，回复"plus"获取
+
+mybatisplus-plus 1.7.2 示例工程下载地址
+https://pan.baidu.com/s/1-FXzhNWF6c35Nb6KgUXKwA
 
 mybatisplus-plus 1.7.1 示例工程下载地址
 https://pan.baidu.com/s/1wJk1xQfs5skqayaihzY_qg

@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
 import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
 import com.github.jeffreyning.mybatisplus.base.MppBaseMapper;
+import com.github.jeffreyning.mybatisplus.util.CheckId;
 import org.apache.ibatis.binding.MapperMethod;
 import org.springframework.transaction.annotation.Transactional;
 import java.lang.reflect.Field;
@@ -43,6 +44,8 @@ public class MppServiceImpl<M extends MppBaseMapper<T>, T> extends ServiceImpl<M
                 idMap.put(attrName, colName);
             }
         }
+        //add 1.7.2
+        CheckId.appendIdColum(modelClass,tableInfo,idMap);
         return idMap;
     }
 

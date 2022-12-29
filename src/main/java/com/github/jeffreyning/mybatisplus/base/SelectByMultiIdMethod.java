@@ -3,8 +3,10 @@ package com.github.jeffreyning.mybatisplus.base;
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.metadata.TableFieldInfo;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
 import com.github.jeffreyning.mybatisplus.conf.PlusConfig;
+import com.github.jeffreyning.mybatisplus.util.CheckId;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlSource;
 import org.apache.ibatis.scripting.defaults.RawSqlSource;
@@ -31,6 +33,9 @@ public class SelectByMultiIdMethod extends AbstractMethod {
         }
         throw new RuntimeException("not found column for "+attrName);
     }
+
+
+
     private String createWhere(Class<?> modelClass, TableInfo tableInfo){
         List<TableFieldInfo> fieldList=tableInfo.getFieldList();
         Map<String, String> idMap=new HashMap();
@@ -43,6 +48,9 @@ public class SelectByMultiIdMethod extends AbstractMethod {
                 idMap.put(attrName, colName);
             }
         }
+        //add 1.7.2
+        CheckId.appendIdColum(modelClass,tableInfo,idMap);
+
         if(idMap.isEmpty()){
             logger.info("entity {} not contain MppMultiId anno", modelClass.getName());
             return null;

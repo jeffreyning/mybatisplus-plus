@@ -59,7 +59,8 @@ public class PlusConfig {
         }*/
         String basePaths=env.getProperty("mpp.entityBasePath");
         if(basePaths==null || "".equals(basePaths) ){
-            logger.error("mpp.entityBasePath is null skip scan result map");
+            //1.7.2 error -> warn
+            logger.warn("mpp.entityBasePath is null skip scan result map");
             return;
         }
         String[] paths= basePaths.split(",");
