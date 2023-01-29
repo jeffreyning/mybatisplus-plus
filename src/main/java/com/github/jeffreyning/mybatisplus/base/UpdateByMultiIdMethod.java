@@ -22,6 +22,12 @@ import java.util.Map;
  */
 public class UpdateByMultiIdMethod extends AbstractMethod {
     private static final Logger logger = LoggerFactory.getLogger(UpdateByMultiIdMethod.class);
+    //for mp 5.3.5.1
+    public UpdateByMultiIdMethod(){
+        super("updateByMultiId");
+    }
+
+
     private String getCol(List<TableFieldInfo> fieldList, String attrName){
         for(TableFieldInfo tableFieldInfo: fieldList){
             String prop=tableFieldInfo.getProperty();

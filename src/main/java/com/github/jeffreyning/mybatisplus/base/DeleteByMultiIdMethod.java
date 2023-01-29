@@ -21,6 +21,12 @@ import java.util.Map;
  */
 public class DeleteByMultiIdMethod extends AbstractMethod {
     private static final Logger logger = LoggerFactory.getLogger(DeleteByMultiIdMethod.class);
+
+    //for mp 5.3.5.1
+    public DeleteByMultiIdMethod(){
+        super("deleteByMultiId");
+    }
+
     private String getCol(List<TableFieldInfo> fieldList, String attrName){
         for(TableFieldInfo tableFieldInfo: fieldList){
             String prop=tableFieldInfo.getProperty();

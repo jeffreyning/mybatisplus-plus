@@ -24,6 +24,11 @@ import java.util.Map;
  */
 public class SelectByMultiIdMethod extends AbstractMethod {
     private static final Logger logger = LoggerFactory.getLogger(SelectByMultiIdMethod.class);
+
+    public SelectByMultiIdMethod(){
+        super("selectByMultiId");
+    }
+
     private String getCol(List<TableFieldInfo> fieldList, String attrName){
         for(TableFieldInfo tableFieldInfo: fieldList){
             String prop=tableFieldInfo.getProperty();
