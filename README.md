@@ -48,7 +48,7 @@ mpp的lambda方式(1.7.0中使用@com.MPP@col)<br>
     <dependency>
         <groupId>com.github.jeffreyning</groupId>
         <artifactId>mybatisplus-plus</artifactId>
-        <version>1.7.3-RELEASE</version>
+        <version>1.7.4-RELEASE</version>
     </dependency>
 ````
 
@@ -386,6 +386,9 @@ _启动时日志中有mpp.entityBasePath is null skip scan result map_
 _提示java.lang.RuntimeException: not found column for 'xxx'_
 是由于设置了@MppMultiId的字段没有同时设置@TableField(value = "xxx")导致的
 
+_使用@UpdateFill和@InsertFill自动填充时报错提示Cause: java.lang.IllegalArgumentException: argument type mismatch_
+由于对某些entity中的字段类型没有做转换如LocalDateTime导致自动填充的sql的返回值类型与entity字段类型不相符，mpp1.7.4版本已经解决了此问题，旧版本需修改entity字段类型与sql返回类型一致。
+
 _如何整合pagehelper插件_
 
 mybatisplus本身有分页常见，如果一定要使用pagehelper插件的话，与原生的mybatisplus有冲突
@@ -403,8 +406,11 @@ mybatisplus本身有分页常见，如果一定要使用pagehelper插件的话�
 ```
 
 **版本说明**
+mybatisplus-plus1.7.4优化自动填充时的字段类型转换功能
+mybatisplus-plus1.7.3兼容mybatisplus3.5.1+
 mybatisplus-plus1.7.2支持mpp的多主键@MppMultiId可以和mp的单主键@TableId兼容，同时修饰同一个field
 mybatisplus-plus1.7.1支持继承多主键entity
+
 
 **兼容性说明**
 
