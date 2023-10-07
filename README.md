@@ -441,5 +441,5 @@ mybatisplus-plus 1.5.1 示例工程下载地址
 链接：https://pan.baidu.com/s/1XfRy1jrTyOefp3bqiAmNwg
 
 
-我司有文档在线预览编辑工具，可以业务系统集成，提供在线预览编辑office文档、图片、pdf和文档格式转换等功能。还有oa、网盘、数字档案、移动端门户、即时通讯IM等产品有商机的朋友可与qq942225169联系，有提成！
+**为了助力广大程序员，提供1折购买正版IntelliJ IDEA专业版license服务，加qq942225169购买,加qq时注明idea。**
 
