@@ -389,6 +389,9 @@ _提示java.lang.RuntimeException: not found column for 'xxx'_
 _使用@UpdateFill和@InsertFill自动填充时报错提示Cause: java.lang.IllegalArgumentException: argument type mismatch_
 由于对某些entity中的字段类型没有做转换如LocalDateTime导致自动填充的sql的返回值类型与entity字段类型不相符，mpp1.7.4版本已经解决了此问题，旧版本需修改entity字段类型与sql返回类型一致。
 
+_调用saveOrUpdateBatchByMultiId方法报错提示 java.lang.IllegalAccessError: tried to access field com.baomidou.mybatisplus.extension.service.impl.ServiceImpl.entityClass from class com.github.jeffreyning.mybatisplus.service.MppServiceImpl_
+是由于mybatis-plus3.5.5+兼容性造成的，需使用mpp1.7.5版本解决此问题
+
 _如何整合pagehelper插件_
 
 mybatisplus本身有分页常见，如果一定要使用pagehelper插件的话，与原生的mybatisplus有冲突
@@ -407,7 +410,7 @@ mybatisplus本身有分页常见，如果一定要使用pagehelper插件的话�
 
 **版本说明**
 
-mybatisplus-plus1.7.5兼容mybatisplus3.5.7<br/>
+mybatisplus-plus1.7.5兼容mybatisplus3.5.5+<br/>
 mybatisplus-plus1.7.4优化自动填充时的字段类型转换功能<br/>
 mybatisplus-plus1.7.3兼容mybatisplus3.5.1+<br/>
 mybatisplus-plus1.7.2支持mpp的多主键@MppMultiId可以和mp的单主键@TableId兼容，同时修饰同一个field<br/>
@@ -423,7 +426,7 @@ mybatisplus-plus1.5.1与最高到mybatisplus3.4.3.1兼容<br/>
 mybatisplus-plus1.6.0与mybatisplus3.4.3.2到mybatisplus3.5.2兼容（已经测试到mybatisplus3.5.2 2022118 ）(与mybatisplus3.5.3不兼容)<br/>
 mybatisplus-plus1.7.0兼容jdk11(删除了自定义ognl根路径功能)（1.7.0/1.7.1/1.7.2 与mpp1.6.0的兼容范围一致）<br/>
 mybatisplus-plus1.7.3与mybatisplus3.5.1+兼容（已经测试到mybatisplus3.5.3.1 20230129）<br/>
-mybatisplus-plus1.7.5与mybatisplus3.5.7兼容（20240716）<br/>
+mybatisplus-plus1.7.5与mybatisplus3.5.5+兼容（已经测试到mybatisplus3.5.7 20240716）<br/>
 
 **demo下载**
 欢迎添加mpp技术交流qq群 **1028241274** 从群文件中下载各版本demo
