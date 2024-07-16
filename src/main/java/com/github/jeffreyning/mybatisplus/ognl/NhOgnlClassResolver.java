@@ -1,5 +1,6 @@
 package com.github.jeffreyning.mybatisplus.ognl;
 
+import org.apache.ibatis.ognl.OgnlContext;
 import org.apache.ibatis.scripting.xmltags.OgnlClassResolver;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class NhOgnlClassResolver extends OgnlClassResolver {
     public List<String> baseList=new ArrayList();
     public ConcurrentHashMap<String, Class> cacheCls = new ConcurrentHashMap(101);
-    public Class classForName(String className, Map context) throws ClassNotFoundException {
+    public Class classForName(String className, OgnlContext context) throws ClassNotFoundException {
         Class cls = (Class)this.cacheCls.get(className);
         if (cls != null) {
             return cls;

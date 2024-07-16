@@ -48,7 +48,7 @@ mpp的lambda方式(1.7.0中使用@com.MPP@col)<br>
     <dependency>
         <groupId>com.github.jeffreyning</groupId>
         <artifactId>mybatisplus-plus</artifactId>
-        <version>1.7.4-RELEASE</version>
+        <version>1.7.5-RELEASE</version>
     </dependency>
 ````
 
@@ -406,21 +406,24 @@ mybatisplus本身有分页常见，如果一定要使用pagehelper插件的话�
 ```
 
 **版本说明**
-mybatisplus-plus1.7.4优化自动填充时的字段类型转换功能
-mybatisplus-plus1.7.3兼容mybatisplus3.5.1+
-mybatisplus-plus1.7.2支持mpp的多主键@MppMultiId可以和mp的单主键@TableId兼容，同时修饰同一个field
-mybatisplus-plus1.7.1支持继承多主键entity
+mybatisplus-plus1.7.5兼容mybatisplus3.5.7<br/>
+mybatisplus-plus1.7.4优化自动填充时的字段类型转换功能<br/>
+mybatisplus-plus1.7.3兼容mybatisplus3.5.1+<br/>
+mybatisplus-plus1.7.2支持mpp的多主键@MppMultiId可以和mp的单主键@TableId兼容，同时修饰同一个field<br/>
+mybatisplus-plus1.7.1支持继承多主键entity<br/>
 
 
 **兼容性说明**
 
-mybatisplus-plus1.5.0兼容mybatisplus3.3.1(mybatis3.5.3)到最新版mybatisplus3.4.2(mybatis3.5.6)
-mybatisplus-plus1.5.1与最高到mybatisplus3.4.3.1兼容
-（mybatisplus-plus1.5.1与mybatisplus3.4.3不兼容，mybatisplus3.4.3自身有bug无法使用，报sun.reflect.generics.reflectiveObjects.TypeVariableImpl cannot be cast to java.lang.Class）
-（mybatisplus-plus1.5.1与mybatisplus3.4.3.2不兼容，报org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)）
-mybatisplus-plus1.6.0与mybatisplus3.4.3.2到mybatisplus3.5.2兼容（已经测试到mybatisplus3.5.2 2022118 ）(与mybatisplus3.5.3不兼容)
-mybatisplus-plus1.7.0兼容jdk11(删除了自定义ognl根路径功能)（1.7.0/1.7.1/1.7.2 与mpp1.6.0的兼容范围一致）
-mybatisplus-plus1.7.3与mybatisplus3.5.1+兼容（已经测试到mybatisplus3.5.3.1 20230129）
+mybatisplus-plus1.5.0兼容mybatisplus3.3.1(mybatis3.5.3)到最新版mybatisplus3.4.2(mybatis3.5.6)<br/>
+mybatisplus-plus1.5.1与最高到mybatisplus3.4.3.1兼容<br/>
+（mybatisplus-plus1.5.1与mybatisplus3.4.3不兼容，mybatisplus3.4.3自身有bug无法使用，报sun.reflect.generics.reflectiveObjects.TypeVariableImpl cannot be cast to java.lang.Class）<br/>
+（mybatisplus-plus1.5.1与mybatisplus3.4.3.2不兼容，报org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)）<br/>
+mybatisplus-plus1.6.0与mybatisplus3.4.3.2到mybatisplus3.5.2兼容（已经测试到mybatisplus3.5.2 2022118 ）(与mybatisplus3.5.3不兼容)<br/>
+mybatisplus-plus1.7.0兼容jdk11(删除了自定义ognl根路径功能)（1.7.0/1.7.1/1.7.2 与mpp1.6.0的兼容范围一致）<br/>
+mybatisplus-plus1.7.3与mybatisplus3.5.1+兼容（已经测试到mybatisplus3.5.3.1 20230129）<br/>
+mybatisplus-plus1.7.4与mybatisplus3.5.7兼容（20240716）<br/>
+
 **demo下载**
 欢迎添加mpp技术交流qq群 **1028241274** 从群文件中下载各版本demo
 或者从网盘中下载demo，下载密码需要搜索"爱好与编程"订阅公众号，回复"plus"获取
@@ -441,5 +444,4 @@ mybatisplus-plus 1.5.1 示例工程下载地址
 链接：https://pan.baidu.com/s/1XfRy1jrTyOefp3bqiAmNwg
 
 
-**为了助力广大程序员，提供1折购买正版IntelliJ IDEA专业版license服务，加qq942225169购买,加qq时注明idea。**
 

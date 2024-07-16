@@ -84,11 +84,11 @@ public class MppServiceImpl<M extends MppBaseMapper<T>, T> extends ServiceImpl<M
             rollbackFor = {Exception.class}
     )
     public boolean saveOrUpdateBatchByMultiId(Collection<T> entityList, int batchSize) {
-        TableInfo tableInfo = TableInfoHelper.getTableInfo(this.entityClass);
+        TableInfo tableInfo = TableInfoHelper.getTableInfo(this.getEntityClass());
         Assert.notNull(tableInfo, "error: can not execute. because can not find cache of TableInfo for entity!", new Object[0]);
 
-        Map<String, String> idMap=checkIdCol(this.entityClass, tableInfo);
-        Assert.notEmpty(idMap, "entity {} not contain MppMultiId anno", new Object[]{this.entityClass.getName()});
+        Map<String, String> idMap=checkIdCol(this.getEntityClass(), tableInfo);
+        Assert.notEmpty(idMap, "entity {} not contain MppMultiId anno", new Object[]{this.getEntityClass().getName()});
 
         return this.executeBatch(entityList, batchSize, (sqlSession, entity) -> {
             boolean updateFlag=true;
@@ -119,7 +119,7 @@ public class MppServiceImpl<M extends MppBaseMapper<T>, T> extends ServiceImpl<M
             rollbackFor = {Exception.class}
     )
     public boolean updateBatchByMultiId(Collection<T> entityList, int batchSize) {
-        String sqlStatement = SqlHelper.table(this.entityClass).getSqlStatement("updateByMultiId");
+        String sqlStatement = SqlHelper.table(this.getEntityClass()).getSqlStatement("updateByMultiId");
         return this.executeBatch(entityList, batchSize, (sqlSession, entity) -> {
             MapperMethod.ParamMap<T> param = new MapperMethod.ParamMap();
             param.put("et", entity);
