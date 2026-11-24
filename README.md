@@ -56,7 +56,7 @@ mpp的lambda方式(1.7.0中使用@com.MPP@col)<br>
     <dependency>
         <groupId>com.github.jeffreyning</groupId>
         <artifactId>mybatisplus-plus</artifactId>
-        <version>1.8.0-RELEASE</version>
+        <version>1.8.0</version>
     </dependency>
 ````
 
