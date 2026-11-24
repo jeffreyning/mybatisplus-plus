@@ -1,8 +1,9 @@
 package com.github.jeffreyning.mybatisplus.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.spring.service.IService;
 import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
 import com.github.jeffreyning.mybatisplus.base.MppBaseMapper;
+import com.github.jeffreyning.mybatisplus.util.CheckId;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
@@ -13,14 +14,17 @@ import java.util.Collection;
 public interface IMppService<T> extends IService<T> {
     MppBaseMapper<T> getBaseMapper();
     default boolean updateByMultiId(T entity) {
+        CheckId.checkIdNotNull(entity);
         return SqlHelper.retBool(this.getBaseMapper().updateByMultiId(entity));
     }
 
     default boolean deleteByMultiId(T entity) {
+        CheckId.checkIdNotNull(entity);
         return SqlHelper.retBool(this.getBaseMapper().deleteByMultiId(entity));
     }
 
     default T selectByMultiId(T entity) {
+        CheckId.checkIdNotNull(entity);
         return this.getBaseMapper().selectByMultiId(entity);
     }
 

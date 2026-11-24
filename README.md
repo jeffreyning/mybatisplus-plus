@@ -1,6 +1,14 @@
 # mybatisplus-plus
 mybatisplus-plus对mybatisplus的一些功能补充
 
+**由nhdeep技术支持，提供档案管理系统和文档比较工具软件。官网http://www.nhdeep.com**
+
+- 文档预览工具：免费、免安装、跨平台的本地文档快速预览器，Windows / Linux（麒麟、统信等）双系统可用。不需要安装 Office、WPS、PS、CAD、Visio，打开文件就能看。http://nhdeep.com/nhdeep-word.html
+- 文档比较工具：绿色免安装、支持文字内容与文字样式双重对比的Word文档对比工具&在线比较。支持 .doc/.docx/.wps 多种格式及相互比较。http://nhdeep.com/nhdeep-compare.html
+- 档案管理系统：全面的档案管理解决方案，适用于各类档案室的日常管理工作，完美支持信创环境。http://nhdeep.com/nhdeep-dir.html
+
+---
+
 **根据多个字段联合主键增删改查**
 原生mybatisplus只支持一个主键，mpp支持多个字段联合主键（复合主键）增删改查，mapper需要继承MppBaseMapper<br>
 实体类中联合主键的字段需要用@MppMultiId注解修饰<br>
@@ -48,7 +56,7 @@ mpp的lambda方式(1.7.0中使用@com.MPP@col)<br>
     <dependency>
         <groupId>com.github.jeffreyning</groupId>
         <artifactId>mybatisplus-plus</artifactId>
-        <version>1.7.5-RELEASE</version>
+        <version>1.8.0-RELEASE</version>
     </dependency>
 ````
 
@@ -352,7 +360,7 @@ _如果加了@EnableMPP后仍然报Invalid bound statement (not found)_
 
 需要检查是否实现了自定义的SqlSessionFactory，如果实现自定义的SqlSessionFactory则需要手工注入
 MppSqlInjector（否则引发Invalid bound statement）, MppKeyGenerator(否则无法主键生成), DataAutoFill（否则无法自动填充）
-自定义SqlSessionFactory注入示例如下
+自定义SqlSessionFactory注入示例如下（mybatisplus3.5.18中MybatisSqlSessionFactoryBean位于com.baomidou.mybatisplus.spring包）
 ```    @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dateSource, MybatisPlusProperties properties, MppSqlInjector mppSqlInjector, MppKeyGenerator mppKeyGenerator, DataAutoFill dataAutoFill) throws Exception {
         MybatisSqlSessionFactoryBean bean=new MybatisSqlSessionFactoryBean();
@@ -410,6 +418,8 @@ mybatisplus本身有分页常见，如果一定要使用pagehelper插件的话�
 
 **版本说明**
 
+mybatisplus-plus1.8.0适配mybatisplus3.5.17/3.5.18(IService/ServiceImpl迁移到com.baomidou.mybatisplus.spring包)<br/>
+mybatisplus-plus1.8.0加强主键null值检查，多主键检索/更新/删除/saveOrUpdate(含批量)主键为null或空串时直接抛异常<br/>
 mybatisplus-plus1.7.5兼容mybatisplus3.5.5+<br/>
 mybatisplus-plus1.7.4优化自动填充时的字段类型转换功能<br/>
 mybatisplus-plus1.7.3兼容mybatisplus3.5.1+<br/>
@@ -427,6 +437,8 @@ mybatisplus-plus1.6.0与mybatisplus3.4.3.2到mybatisplus3.5.2兼容（已经测�
 mybatisplus-plus1.7.0兼容jdk11(删除了自定义ognl根路径功能)（1.7.0/1.7.1/1.7.2 与mpp1.6.0的兼容范围一致）<br/>
 mybatisplus-plus1.7.3与mybatisplus3.5.1+兼容（已经测试到mybatisplus3.5.3.1 20230129）<br/>
 mybatisplus-plus1.7.5与mybatisplus3.5.5+兼容（已经测试到mybatisplus3.5.7 20240716）<br/>
+mybatisplus-plus1.8.0与mybatisplus3.5.17/3.5.18兼容，不兼容3.5.16及以下版本<br/>
+mybatisplus-plus1.8.0对应mybatisplus3.5.17+<br/>
 
 **demo下载**
 欢迎添加mpp技术交流qq群 **1028241274** 从群文件中下载各版本demo
