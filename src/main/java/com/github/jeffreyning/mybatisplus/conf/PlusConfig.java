@@ -3,7 +3,6 @@ package com.github.jeffreyning.mybatisplus.conf;
 import com.github.jeffreyning.mybatisplus.base.MppSqlInjector;
 import com.github.jeffreyning.mybatisplus.handler.DataAutoFill;
 //import com.github.jeffreyning.mybatisplus.ognl.NhOgnlClassResolver;
-import com.github.jeffreyning.mybatisplus.interceptor.MppIdCheckInterceptor;
 import com.github.jeffreyning.mybatisplus.scan.ResultMapUtil;
 import com.github.jeffreyning.mybatisplus.scan.ScanUtil;
 import com.github.jeffreyning.mybatisplus.util.LambdaUtil;
@@ -41,11 +40,6 @@ public class PlusConfig {
     public MppSqlInjector mppSqlInjector(){
         return new MppSqlInjector();
     }*/
-
-    @Bean
-    public MppIdCheckInterceptor mppIdCheckInterceptor(){
-        return new MppIdCheckInterceptor();
-    }
 
     @PostConstruct
     public void initRM() throws Exception {

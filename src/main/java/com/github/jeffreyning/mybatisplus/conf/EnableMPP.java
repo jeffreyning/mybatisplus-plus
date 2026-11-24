@@ -13,7 +13,7 @@ import com.github.jeffreyning.mybatisplus.handler.DataAutoFill;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
-@Import(PlusConfig.class)
+@Import({PlusConfig.class, MppIdCheckConfig.class})
 public @interface EnableMPP {
 
 }
